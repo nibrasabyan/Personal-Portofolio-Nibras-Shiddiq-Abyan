@@ -1,0 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --bg: #0a0a0a;
+  --surface: #121212;
+  --elevated: #1a1a1a;
+  --teal: #00c9a7;
+  --teal-hover: #00a88b;
+  --teal-glow: rgba(0, 201, 167, 0.35);
+  --line: #27272a;
+  --line-muted: #1f1f23;
+  --text: #ffffff;
+  --text-muted: #a1a1aa;
+  --text-faint: #71717a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg);
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-feature-settings: 'ss01', 'ss02';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--teal);
+  color: #000;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--elevated);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--line);
+}
+
+/* Hide native cursor when custom cursor is active (desktop only) */
+@media (hover: hover) and (pointer: fine) {
+  body.has-custom-cursor,
+  body.has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+
+/* Grain texture overlay */
+.grain-overlay {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>");
+  animation: grain 8s steps(10) infinite;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+/* Mesh radial gradient background for hero */
+.mesh-bg {
+  background:
+    radial-gradient(circle at 18% 20%, rgba(0, 201, 167, 0.12) 0%, transparent 35%),
+    radial-gradient(circle at 82% 75%, rgba(0, 201, 167, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
+    var(--bg);
+}
+
+/* Animated dot grid pattern (Hero) */
+.dot-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(0, 201, 167, 0.18) 1px, transparent 1.4px);
+  background-size: 28px 28px;
+  background-position: 0 0;
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  opacity: 0.55;
+  animation: dotDrift 18s ease-in-out infinite alternate;
+  will-change: background-position;
+}
+@keyframes dotDrift {
+  0%   { background-position: 0 0; }
+  50%  { background-position: 14px 8px; }
+  100% { background-position: -10px 14px; }
+}
+
+/* Graph-paper grid for Skills/Certificates sections */
+.grid-paper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+}
+
+/* Section divider — diagonal hairline + soft fade */
+.section-divider {
+  position: relative;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(to right, transparent, rgba(0,201,167,0.25), transparent);
+}
+.section-divider::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border: 1px solid rgba(0,201,167,0.4);
+  background: var(--bg);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* Clip-path reveal animation helper */
+.clip-reveal {
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  animation: clip-reveal 0.9s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+@keyframes clip-reveal {
+  0% { clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); }
+  100% { clip-path: polygon(0 0%, 100% 0%, 100% 100%, 0 100%); }
+}
+
+/* Headings */
+.font-display {
+  font-family: 'Syne', serif;
+}
+
+/* Reduce motion globally */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .grain-overlay,
+  .dot-grid { display: none; }
+}
+
+/* Will-change utilities for animated elements */
+.gpu {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* Section heading eyebrow */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--teal);
+}
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--teal);
+}
+
+/* Glass card */
+.glass {
+  background: rgba(18, 18, 18, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) {
+  .custom-cursor { display: none; }
+}
+
+/* Tilt utility for project card hover (CSS 3D) */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tilt-card:hover {
+  transform: perspective(900px) rotateX(3deg) rotateY(-4deg) translateY(-6px);
+}
+
+/* Typewriter caret */
+.caret::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 4px;
+  background: var(--teal);
+  vertical-align: -0.15em;
+  animation: caret 1s steps(2) infinite;
+}
+@keyframes caret {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Marquee for About */
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}

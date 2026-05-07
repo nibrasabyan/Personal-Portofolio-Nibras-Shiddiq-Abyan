@@ -1,0 +1,143 @@
+{
+  "theme": "dark",
+  "archetype": "5 (Jewel & Luxury / Cinematic Tech Portfolio)",
+  "color_palette": {
+    "background": {
+      "main": "#0a0a0a",
+      "surface": "#121212",
+      "surface_elevated": "#1a1a1a",
+      "glass": "rgba(18, 18, 18, 0.7)"
+    },
+    "accent": {
+      "primary": "#00c9a7",
+      "primary_hover": "#00a88b",
+      "primary_glow": "rgba(0, 201, 167, 0.4)"
+    },
+    "text": {
+      "primary": "#ffffff",
+      "secondary": "#a1a1aa",
+      "tertiary": "#71717a",
+      "inverse": "#000000"
+    },
+    "border": {
+      "default": "#27272a",
+      "focus": "#00c9a7",
+      "glass": "rgba(255, 255, 255, 0.1)"
+    }
+  },
+  "typography": {
+    "heading_font": {
+      "family": "Syne, sans-serif",
+      "weights": ["600", "700", "800"],
+      "usage": "H1, H2, H3, Hero text, and large callouts. Provides a timeless, crafted architectural feel."
+    },
+    "body_font": {
+      "family": "DM Sans, sans-serif",
+      "weights": ["400", "500"],
+      "usage": "Body text, paragraphs, labels, small UI elements. Ensures maximum readability."
+    },
+    "scales": {
+      "h1": "text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-none",
+      "h2": "text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight",
+      "h3": "text-2xl sm:text-3xl font-semibold",
+      "h4": "text-xl font-semibold",
+      "body": "text-base sm:text-lg leading-relaxed text-secondary",
+      "small": "text-sm uppercase tracking-widest text-tertiary"
+    }
+  },
+  "layout_spacing": {
+    "container": "max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16",
+    "section_padding": "py-24 sm:py-32",
+    "gap": {
+      "sm": "gap-4",
+      "md": "gap-8",
+      "lg": "gap-12",
+      "xl": "gap-24"
+    },
+    "border_radius": {
+      "card": "rounded-2xl",
+      "button": "rounded-full",
+      "badge": "rounded-full",
+      "image": "rounded-3xl"
+    }
+  },
+  "components": {
+    "navbar": {
+      "style": "Fixed top, backdrop-blur-xl bg-glass border-b border-glass",
+      "logo": "Geometric SVG mark (abstract sharp lines forming an 'N' or a minimalist geometric shape, NO text logo), fill-primary (#00c9a7)",
+      "links": "DM Sans text-sm font-medium hover:text-primary transition-colors",
+      "mobile": "Hamburger menu, full-screen overlay when open",
+      "active_state": "Text color changes to primary, small glowing dot below the active link"
+    },
+    "buttons": {
+      "primary": "bg-primary text-inverse px-6 py-3 rounded-full font-medium hover:bg-primary_hover transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,201,167,0.4)]",
+      "secondary": "border border-border text-primary px-6 py-3 rounded-full font-medium hover:border-primary hover:text-primary_hover transition-all duration-300"
+    },
+    "cards": {
+      "default": "bg-surface border border-border rounded-2xl p-6 md:p-8 hover:border-glass hover:bg-surface_elevated transition-all duration-300",
+      "hover_effect": "Hover lift (-translate-y-2) and subtle primary glow box-shadow"
+    },
+    "badges": {
+      "default": "px-3 py-1 bg-surface_elevated border border-border rounded-full text-sm text-secondary"
+    },
+    "cursor": {
+      "desktop_only": true,
+      "style": "Small dot (w-3 h-3) bg-primary rounded-full fixed pointer-events-none mix-blend-screen z-[100]",
+      "follower": "Larger hollow circle (w-8 h-8) border border-primary rounded-full fixed pointer-events-none transition-transform duration-100"
+    },
+    "loading_screen": {
+      "style": "Full screen bg-main flex items-center justify-center z-[999]",
+      "duration": "max 1.5s",
+      "animation": "Geometric SVG logo drawing effect or minimal pulsing teal dot"
+    },
+    "progress_bar": {
+      "style": "Fixed top-0 left-0 h-1 bg-primary z-[60] origin-left"
+    }
+  },
+  "sections": {
+    "hero": {
+      "layout": "min-h-screen flex flex-col justify-center items-center relative overflow-hidden",
+      "visuals": "Particle/grain background (React TSParticles or GSAP canvas), central focal point is Name, profile photo inside a cinematic dark frame, scroll indicator at bottom",
+      "typography": "Name in H1 Syne, typewriter effect for tagline below name"
+    },
+    "about": {
+      "layout": "Split layout (1fr 1fr), text on one side, photo on the other",
+      "visuals": "Photo uses rounded-3xl with subtle teal rim glow shadow"
+    },
+    "skills": {
+      "layout": "Grid or bento layout",
+      "content": "Categorized badges (Frontend, Backend, Tools) staggered reveal on scroll"
+    },
+    "experience": {
+      "layout": "Vertical timeline with glowing nodes. Left side date, right side content. Hide entirely if data array is empty."
+    },
+    "certificates": {
+      "layout": "Grid (1fr md:1fr 1fr), Cards with hover lift + teal glow",
+      "content": "PDF link button pointing to public/ credentialUrl"
+    },
+    "projects": {
+      "layout": "Bento Grid (staggered spans)",
+      "data": "Fetch from GitHub API",
+      "visuals": "Display stars, forks, language tags"
+    },
+    "contact": {
+      "layout": "Centered clean layout with email CTA and social links",
+      "cta": "Large dramatic text 'Let's Build Something'"
+    }
+  },
+  "animations": {
+    "engine": "Framer Motion + GSAP",
+    "hero_reveal": "GSAP timeline: text split reveal, fade in particle background, stagger fade up photo",
+    "scroll_trigger": "Framer Motion 'whileInView' with 'viewport={{ once: true, margin: -100px }}'",
+    "hover_micro": "CSS transitions + Framer Motion scale tweaks",
+    "accessibility": "Check prefers-reduced-motion media query to disable heavy GSAP/Framer animations"
+  },
+  "media": {
+    "hero_background_texture": "https://static.prod-images.emergentagent.com/jobs/f7b8cd24-a494-4c23-b84d-d0702fe6a660/images/81727a3a2f79fb1b523f8bf6d695590d6a3f9168b3e44ae9c4528e61b2095f97.png",
+    "profile_photo_placeholder": "/placeholder-profile.jpg (Note: User will upload specific UB almamater photo with teal/blue tone)",
+    "svg_mark_instructions": "Create a custom geometric SVG (e.g., using <polygon> or <path>) representing an abstract N or a cube, filling with #00c9a7"
+  },
+  "testing": {
+    "instructions": "Ensure all interactive elements (links, buttons, form inputs) contain a 'data-testid' attribute in kebab-case."
+  }
+}
